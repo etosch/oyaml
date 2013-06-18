@@ -21,6 +21,12 @@ let dump s =
 
 let parse s = 
 	let lexbuf = Lexing.from_string s in
-	let nodes = Parser.input Lexer.token lexbuf in
+	let rec all_nodes acc =
+		match (Parser.input Lexer.token lexbuf) with
+			| None -> acc
+			| Some n -> all_nodes (n :: acc)
+	in
+	let nodes = all_nodes [] in
 		List.iter dump nodes;
 		nodes
+

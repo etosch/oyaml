@@ -22,20 +22,20 @@ open Types
 %token TRIPLE_DASH
 %token <Types.node> QUOTED_STRING
 %token SPACE
-%token NEWLINE
+%token EOL
 
 %left PLUS
 %start input
-%type <Types.node list> input
+%type <Types.node option> input
 
 %%
 input:
-    | EOF { [] }
-    | cunit input { $1 :: $2 }
+    | EOF { None }
+    | cunit EOL { Some $1 }
 ;
 cunit:
-    | exp { $1 }
+    | exp { print_endline "wtf?"; $1 }
 ;
 exp:
-    | NUM { $1 }
+    | NUM { print_endline "ook!"; $1 }
 ;

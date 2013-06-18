@@ -21,18 +21,9 @@
 }
 
 let digit = ['0'-'9']
-let nonquote = [ ^ '"' ]
-let nonnl = [ ^ '\n' ]
 
 rule token = parse
-(*  | [' ' '\t']             { token lexbuf } *)
-    | ' '                    { SPACE }
-    | '"' nonquote* as s '"' { QUOTED_STRING (Scalar s) }
-    | '\n'                   { incr_lineno lexbuf ; NEWLINE; token lexbuf } (* incr_lineno lexbuf; token lexbuf *)
-    | "-"? digit+ as num     { NUM (Scalar num) }
-    | '+'                    { PLUS }
-    | '-'                    { MINUS }
-    | ':'                    { COLON }
-    | '#' nonnl*             { token lexbuf }
-    | "---"                  { TRIPLE_DASH }
+    | ['\n']                 { EOL } 
+    | digit+ as num          { NUM (Scalar num) }
+	| ':'                    { COLON }
     | eof                    { EOF }
