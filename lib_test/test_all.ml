@@ -16,7 +16,7 @@ let read_all_stdin () =
 	let ic = stdin in
 		(try while true 
 			do let line = input_line ic in
-				   buf := !buf ^ line
+				   buf := !buf ^ line ^ "\n"
 			done
 		 with End_of_file ->	
 			 close_in ic);
@@ -25,5 +25,5 @@ let read_all_stdin () =
 
 let () = 
 	let text = read_all_stdin () in
-	let s = Yaml.parse text in
-		ignore s
+		Printf.printf "Input len: %d\n" (String.length text);
+		ignore (Yaml.parse text)
