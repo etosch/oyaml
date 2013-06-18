@@ -8,6 +8,7 @@ open Types
 %token PLUS
 %token COLON
 %token MINUS
+%token TRIPLE_DASH
 
 %left PLUS
 %start input

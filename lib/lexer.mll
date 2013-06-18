@@ -22,4 +22,5 @@ rule token = parse
 	| '-'       { MINUS }
     | ':'       { COLON }
 	| '#' nonnl*  { token lexbuf }
+	| '---' { TRIPLE_DASH }
 	| eof { EOF }
