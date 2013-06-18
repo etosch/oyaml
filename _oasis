@@ -20,5 +20,3 @@ Executable test_all
   CompiledObject:     best
   Install:            false
   BuildDepends:       oyaml
-
-  
