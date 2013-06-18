@@ -23,7 +23,9 @@
 let digit = ['0'-'9']
 
 rule token = parse
-    | ['\n']                 { EOL } 
+    | ['\n']                 { EOL }
+	| ' '+ as spaces         { SPACE (String.length spaces) }
     | digit+ as num          { NUM (Scalar num) }
 	| ':'                    { COLON }
+	| '-'                    { MINUS }
     | eof                    { EOF }

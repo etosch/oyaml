@@ -21,7 +21,7 @@ open Types
 %token MINUS
 %token TRIPLE_DASH
 %token <Types.node> QUOTED_STRING
-%token SPACE
+%token <int> SPACE
 %token EOL
 
 %left PLUS
