@@ -9,6 +9,7 @@ open Types
 %token COLON
 %token MINUS
 %token TRIPLE_DASH
+%token <Types.node> QUOTED_STRING
 
 %left PLUS
 %start input

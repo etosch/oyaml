@@ -16,11 +16,12 @@ let nonnl = [ ^ '\n' ]
 
 rule token = parse
 	| [' ' '\t']	{ token lexbuf }
+    | '"' nonquote* as s '"' { QUOTED_STRING (Scalar s) }
 	| '\n'		{ incr_lineno lexbuf; token lexbuf }
 	| "-"? digit+ as num { NUM (Scalar num) }
 	| '+'		{ PLUS }
 	| '-'       { MINUS }
     | ':'       { COLON }
 	| '#' nonnl*  { token lexbuf }
-	| '---' { TRIPLE_DASH }
+	| "---" { TRIPLE_DASH }
 	| eof { EOF }
