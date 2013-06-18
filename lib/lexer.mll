@@ -1,6 +1,7 @@
 {
 	open Parser
 	open Lexing
+	open Types
 	let incr_lineno lexbuf =
 		let pos = lexbuf.lex_curr_p in
 			lexbuf.lex_curr_p <- { pos with
@@ -14,7 +15,7 @@ let digit = ['0'-'9']
 rule token = parse
 	| [' ' '\t']	{ token lexbuf }
 	| '\n'		{ incr_lineno lexbuf; token lexbuf }
-	| "-"? digit+ as num { NUM (int_of_string num) }
+	| "-"? digit+ as num { NUM (Scalar num) }
 	| '+'		{ PLUS }
 	| '-'       { MINUS }
     | ':'       { COLON }

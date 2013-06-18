@@ -4,22 +4,22 @@ open Types
 %}
 
 %token EOF
-%token <int> NUM
+%token <Types.node> NUM
 %token PLUS
 %token COLON
 %token MINUS
 
 %left PLUS
 %start input
-%type <bool> input
+%type <Types.node list> input
 
 %%
 input:
-    | EOF { true }
-    | cunit input { false }
+    | EOF { [] }
+    | cunit input { $1 :: $2 }
 ;
 cunit:
-    | exp { "hello" }
+    | exp { $1 }
 ;
 exp:
     | NUM { $1 }
