@@ -20,3 +20,4 @@
 <lib_test/*.ml{,i}>: use_oyaml
 <lib_test/test_all.{native,byte}>: custom
 # OASIS_STOP
+<lib/*ml{,i}>: annot
