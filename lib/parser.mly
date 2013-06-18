@@ -22,6 +22,7 @@ open Types
 %token TRIPLE_DASH
 %token <Types.node> QUOTED_STRING
 %token SPACE
+%token NEWLINE
 
 %left PLUS
 %start input
