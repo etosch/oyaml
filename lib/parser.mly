@@ -10,6 +10,7 @@ open Types
 %token MINUS
 %token TRIPLE_DASH
 %token <Types.node> QUOTED_STRING
+%token SPACE
 
 %left PLUS
 %start input

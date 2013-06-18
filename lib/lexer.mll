@@ -15,7 +15,8 @@ let nonquote = [ ^ '"' ]
 let nonnl = [ ^ '\n' ]
 
 rule token = parse
-	| [' ' '\t']	{ token lexbuf }
+(*	| [' ' '\t']	{ token lexbuf } *)
+    | ' ' { SPACE }
     | '"' nonquote* as s '"' { QUOTED_STRING (Scalar s) }
 	| '\n'		{ incr_lineno lexbuf; token lexbuf }
 	| "-"? digit+ as num { NUM (Scalar num) }
