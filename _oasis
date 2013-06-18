@@ -14,7 +14,7 @@ Library oyaml
 Executable test_all
   Path:               lib_test
   MainIs:             test_all.ml
-  Build$:             flag(tests) && flag(async)
+  Build$:             flag(tests)
   BuildTools:		  ocamlbuild
   Custom:             true
   CompiledObject:     best
