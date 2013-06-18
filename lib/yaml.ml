@@ -13,7 +13,7 @@ open Types
 type t = Types.node list
 
 let process = function
-	| Scalar s -> "scalar"
+	| Scalar s -> Printf.sprintf "scalar(%s)" s
 	| _ -> "unrecognised"
 
 let dump s =
