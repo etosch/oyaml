@@ -11,6 +11,8 @@
 }
 
 let digit = ['0'-'9']
+let nonquote = [ ^ '"' ]
+let nonnl = [ ^ '\n' ]
 
 rule token = parse
 	| [' ' '\t']	{ token lexbuf }
@@ -19,4 +21,5 @@ rule token = parse
 	| '+'		{ PLUS }
 	| '-'       { MINUS }
     | ':'       { COLON }
+	| '#' nonnl*  { token lexbuf }
 	| eof { EOF }
