@@ -1,0 +1,13 @@
+
+none: [~, null]
+bool: [true, false, on, off]
+int: 42
+float: 3.14159
+list: [LITE, RES_ACID, SUS_DEXT]
+dict: {hp: 13, sp: 5}
+
+!!python/object:__main__.Hero
+name: Welthyr Syxgon
+hp: 1200
+sp: 0
+
