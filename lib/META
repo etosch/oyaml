@@ -1,0 +1,11 @@
+# OASIS_START
+# DO NOT EDIT (digest: 236d1a0c4118a36d223f7c9834ff2589)
+version = "0.1"
+description = "A pure OCaml parser for YAML"
+archive(byte) = "oyaml.cma"
+archive(byte, plugin) = "oyaml.cma"
+archive(native) = "oyaml.cmxa"
+archive(native, plugin) = "oyaml.cmxs"
+exists_if = "oyaml.cma"
+# OASIS_STOP
+
