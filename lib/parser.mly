@@ -41,8 +41,8 @@ cunit_headed:
 	| TRIPLE_DASH EOL cunit_bare { $3 }
 ;
 cunit_bare:
-    | exp { print_endline "wtf?"; $1 }
+    | exp { $1 }
 ;
 exp:
-    | NUM { print_endline "ook!"; $1 }
+    | NUM { $1 }
 ;
