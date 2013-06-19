@@ -27,5 +27,6 @@ rule token = parse
 	| ' '+ as spaces         { SPACE (String.length spaces) }
     | digit+ as num          { NUM (Scalar num) }
 	| ':'                    { COLON }
+	| "---"                  { TRIPLE_DASH }
 	| '-'                    { MINUS }
     | eof                    { EOF }

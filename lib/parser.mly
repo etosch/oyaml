@@ -34,6 +34,13 @@ input:
     | cunit EOL { Some $1 }
 ;
 cunit:
+	| cunit_bare { $1 }
+	| cunit_headed { $1 }
+;
+cunit_headed:
+	| TRIPLE_DASH EOL cunit_bare { $3 }
+;
+cunit_bare:
     | exp { print_endline "wtf?"; $1 }
 ;
 exp:
