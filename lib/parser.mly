@@ -50,8 +50,8 @@ exp:
 	| sequence { Sequence $1 }
 ;
 sequence:
-	| seq_member EOL sequence { $1 :: $3 }
+	| seq_member { print_endline "seq"; [ $1 ] }
 ;
 seq_member:
-	| MINUS SPACE STRING  { $3 }
+	| MINUS SPACE STRING { print_endline "hello?"; $3 }
 ;

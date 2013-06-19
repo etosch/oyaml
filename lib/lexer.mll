@@ -21,7 +21,7 @@
 }
 
 let digit = ['0'-'9']
-let nonquote = [ ^ '"' ' ' '\n' ]
+let nonquote = [ ^ '"' ' ' '\n' '-' ]
 
 rule token = parse
     | ['\n']                 { EOL }
