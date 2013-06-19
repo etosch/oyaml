@@ -27,8 +27,8 @@ rule token = parse
     | ['\n']                 { EOL }
 	| ' '+ as spaces         { SPACE (String.length spaces) }
 	| "---"                  { TRIPLE_DASH }
-	| nonquote+ as str       { STRING (Scalar str) }
-    | digit+ as num          { NUM (Scalar num) }
+	| nonquote+ as str       { STRING str }
+    | digit+ as num          { NUM (int_of_string num) }
 	| ':'                    { COLON }
 	| '-'                    { MINUS }
     | eof                    { EOF }

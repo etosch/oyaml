@@ -9,6 +9,7 @@
 *)
 
 type node =
-	| Scalar of string
-	| Map of string
-	| Sequence of node list
+	| Int of int
+	| Str of string
+	| Map of string * string
+	| Sequence of string

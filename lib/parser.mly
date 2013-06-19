@@ -12,16 +12,16 @@
 
 open Lexing
 open Types
+
 %}
 
 %token EOF
-%token <Types.node> NUM
-%token <Types.node> STRING
+%token <int> NUM
+%token <string> STRING
 %token PLUS
 %token COLON
 %token MINUS
 %token TRIPLE_DASH
-%token <Types.node> QUOTED_STRING
 %token <int> SPACE
 %token EOL
 
@@ -45,10 +45,14 @@ cunit_bare:
     | exp { $1 }
 ;
 exp:
-    | NUM { $1 }
-	| STRING { $1 }
-	| seq_member { Sequence [ $1 ] }
+    | NUM { Int $1 }
+	| STRING { Str $1 }
+	| seq_member { Sequence $1 }
+	| map_member { $1 }
 ;
 seq_member:
 	| MINUS SPACE STRING { $3 }
+;
+map_member:
+	| STRING COLON SPACE STRING { Map ($1, $4) }
 ;
