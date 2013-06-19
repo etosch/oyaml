@@ -21,12 +21,14 @@
 }
 
 let digit = ['0'-'9']
+let nonquote = [ ^ '"' ' ' '\n' ]
 
 rule token = parse
     | ['\n']                 { EOL }
 	| ' '+ as spaces         { SPACE (String.length spaces) }
+	| "---"                  { TRIPLE_DASH }
+	| nonquote+ as str       { STRING (Scalar str) }
     | digit+ as num          { NUM (Scalar num) }
 	| ':'                    { COLON }
-	| "---"                  { TRIPLE_DASH }
 	| '-'                    { MINUS }
     | eof                    { EOF }

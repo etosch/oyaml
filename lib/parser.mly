@@ -16,6 +16,7 @@ open Types
 
 %token EOF
 %token <Types.node> NUM
+%token <Types.node> STRING
 %token PLUS
 %token COLON
 %token MINUS
@@ -45,6 +46,7 @@ cunit_bare:
 ;
 exp:
     | NUM EOL { $1 }
+	| STRING EOL { $1 }
 	| sequence { Sequence $1 }
 ;
 sequence:
