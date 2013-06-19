@@ -31,7 +31,7 @@ open Types
 %%
 input:
     | EOF { None }
-    | cunit EOL { Some $1 }
+    | cunit { Some $1 }
 ;
 cunit:
 	| cunit_bare { $1 }
@@ -44,5 +44,12 @@ cunit_bare:
     | exp { $1 }
 ;
 exp:
-    | NUM { $1 }
+    | NUM EOL { $1 }
+	| sequence { Sequence $1 }
+;
+sequence:
+	| seq_member sequence { $1 :: $2 }
+;
+seq_member:
+	| COLON SPACE NUM EOL { $3 }
 ;
