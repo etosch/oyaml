@@ -47,11 +47,8 @@ cunit_bare:
 exp:
     | NUM { $1 }
 	| STRING { $1 }
-	| sequence { Sequence $1 }
-;
-sequence:
-	| seq_member { print_endline "seq"; [ $1 ] }
+	| seq_member { Sequence [ $1 ] }
 ;
 seq_member:
-	| MINUS SPACE STRING { print_endline "hello?"; $3 }
+	| MINUS SPACE STRING { $3 }
 ;
