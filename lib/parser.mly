@@ -32,7 +32,7 @@ open Types
 %%
 input:
     | EOF { None }
-    | cunit { Some $1 }
+    | cunit EOL { Some $1 }
 ;
 cunit:
 	| cunit_bare { $1 }
@@ -45,13 +45,13 @@ cunit_bare:
     | exp { $1 }
 ;
 exp:
-    | NUM EOL { $1 }
-	| STRING EOL { $1 }
+    | NUM { $1 }
+	| STRING { $1 }
 	| sequence { Sequence $1 }
 ;
 sequence:
-	| seq_member sequence { $1 :: $2 }
+	| seq_member EOL sequence { $1 :: $3 }
 ;
 seq_member:
-	| MINUS SPACE STRING EOL { $3 }
+	| MINUS SPACE STRING  { $3 }
 ;
