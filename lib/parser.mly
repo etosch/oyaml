@@ -53,5 +53,5 @@ sequence:
 	| seq_member sequence { $1 :: $2 }
 ;
 seq_member:
-	| COLON SPACE NUM EOL { $3 }
+	| MINUS SPACE STRING EOL { $3 }
 ;
