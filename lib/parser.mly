@@ -24,35 +24,50 @@ open Types
 %token TRIPLE_DASH
 %token <int> SPACE
 %token EOL
+%token LBRACE
+%token RBRACE
+%token COMMA
 
 %left PLUS
+%left COMMA
 %start input
 %type <Types.node option> input
 
 %%
 input:
-    | EOF { None }
-    | cunit EOL { Some $1 }
+    | EOF                          { None }
+    | cunit EOL                    { Some $1 }
 ;
 cunit:
-	| cunit_bare { $1 }
-	| cunit_headed { $1 }
+    | cunit_bare                   { $1 }
+    | cunit_headed                 { $1 }
 ;
 cunit_headed:
-	| TRIPLE_DASH EOL cunit_bare { $3 }
+    | TRIPLE_DASH EOL cunit_bare   { $3 }
 ;
 cunit_bare:
-    | exp { $1 }
+    | exp                          { $1 }
 ;
 exp:
-    | NUM { Int $1 }
-	| STRING { Str $1 }
-	| seq_member { Sequence $1 }
-	| map_member { $1 }
+    | NUM                          { Int $1 }
+    | STRING                       { Str $1 }
+    | map                          { Sequence $1 }
+    | seq                          { Sequence $1 }
+;
+
+seq: 
+    | seq_member EOL seq           { $1 :: $3 }
+    | seq_member                   { [ $1 ] }
+
+map:
+    | LBRACE EOL map EOL RBRACE    { $3 }
+    | map_member EOL map           { $1 :: $3 }
+    | map_member                   { [ $1 ] }
 ;
 seq_member:
-	| MINUS SPACE STRING { $3 }
+    | MINUS SPACE exp              { $3 }
 ;
 map_member:
-	| STRING COLON SPACE STRING { Map ($1, $4) }
+    | STRING COLON SPACE exp COMMA { Tuple ($1, $4) }
+    | STRING COLON SPACE exp       { Tuple ($1, $4) }
 ;

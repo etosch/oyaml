@@ -1,10 +1,10 @@
-OASISFormat: 0.3
+OASISFormat: 0.4
 Name:        oyaml
 Version:     0.1
 Synopsis:    A pure OCaml parser for YAML
 Authors:     Martin Keegan
 License:     Apache-2.0
-Plugins:     META (0.3)
+Plugins:     META (0.4)
 
 Library oyaml
   Path:       lib
@@ -12,11 +12,7 @@ Library oyaml
   Modules:    Yaml
   
 Executable test_all
-  Path:               lib_test
-  MainIs:             test_all.ml
-  Build$:             flag(tests)
-  BuildTools:		  ocamlbuild
-  Custom:             true
-  CompiledObject:     best
-  Install:            false
-  BuildDepends:       oyaml
+  Path:       lib_test
+  BuildTools: ocamlbuild
+  MainIs:     test_all.ml
+  

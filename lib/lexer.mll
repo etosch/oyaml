@@ -25,10 +25,13 @@ let nonquote = [ ^ '"' ' ' '\n' '-' ]
 
 rule token = parse
     | ['\n']                 { EOL }
-	| ' '+ as spaces         { SPACE (String.length spaces) }
-	| "---"                  { TRIPLE_DASH }
-	| nonquote+ as str       { STRING str }
+    | ' '+ as spaces         { SPACE (String.length spaces) }
+    | "---"                  { TRIPLE_DASH }
+    | nonquote+ as str       { STRING str }
     | digit+ as num          { NUM (int_of_string num) }
-	| ':'                    { COLON }
-	| '-'                    { MINUS }
+    | ':'                    { COLON }
+    | '-'                    { MINUS }
     | eof                    { EOF }
+    | ','		     { COMMA }
+    | '{'		     { LBRACE }
+    | '}'		     { RBRACE }
